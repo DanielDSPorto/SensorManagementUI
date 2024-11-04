@@ -1,37 +1,35 @@
-import { useRoutes } from 'react-router-dom';
-import Header from './components/Header';
-import './App.css';
-import TableScreen from './screens/TableScreen/TableScreen';
-import SensorScreen from './screens/SensorScreen/SensorScreen';
+import { useRoutes } from "react-router-dom";
+import Header from "./components/Header";
+import TableScreen from "./screens/TableScreen/TableScreen";
+import SensorScreen from "./screens/SensorScreen/SensorScreen";
+import TableScreenContextProvider from "./contexts/TableScreenContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 function App() {
-  // const tableScreenElement = <TableScreen />;
-  // const sensorScreenElement = <SensorScreen />;
-  // const TableElementWithRoutes = useRoutes(
-  //   ['/', '/table'].map((path) => ({
-  //     path,
-  //     tableScreenElement,
-  //   }))
-  // );
-  // const SensorElementWithRoutes = useRoutes(
-  //   ['/sensor'].map((path) => ({
-  //     path,
-  //     sensorScreenElement,
-  //   }))
-  // );
   const Routes = useRoutes([
     {
-      path: '/',
-      element: <TableScreen />,
+      path: "/",
+      element: (
+        <TableScreenContextProvider>
+          <TableScreen />
+        </TableScreenContextProvider>
+      ),
     },
     {
-      path: '/table',
-      element: <TableScreen />,
+      path: "/table",
+      element: (
+        <TableScreenContextProvider>
+          <TableScreen />
+        </TableScreenContextProvider>
+      ),
     },
-    { path: '/sensor', element: <SensorScreen /> },
+    { path: "/sensor", element: <SensorScreen /> },
   ]);
   return (
     <>
+      <ToastContainer />
       <Header />
       {Routes}
     </>
